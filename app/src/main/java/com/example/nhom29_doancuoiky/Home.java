@@ -17,8 +17,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.nhom29_doancuoiky.fragment.CartFragment;
 import com.example.nhom29_doancuoiky.fragment.HomeFragment;
+import com.example.nhom29_doancuoiky.fragment.OtherProductFragment;
+import com.example.nhom29_doancuoiky.fragment.PantFragment;
+import com.example.nhom29_doancuoiky.fragment.ProductDetailsFragment;
 import com.example.nhom29_doancuoiky.fragment.ProfileFragment;
+import com.example.nhom29_doancuoiky.fragment.ShirtFragment;
+import com.example.nhom29_doancuoiky.fragment.ShoeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +33,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_PROFILE = 1;
+    private static final int FRAGMENT_CART = 2;
+    private static final int FRAGMENT_PRODUCT_DETAIL = 3;
+    private static final int FRAGMENT_SHIRT = 4;
+    private static final int FRAGMENT_PANT = 5;
+    private static final int FRAGMENT_SHOE = 6;
+    private static final int FRAGMENT_OTHER_PRODUCT = 7;
 
     private int CURRENT_FRAGMENT = FRAGMENT_HOME;
 
@@ -58,7 +70,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 if(getSupportFragmentManager().getBackStackEntryCount() == 0) finish();
             }
         });
+        
+        getData();
 
+    }
+
+    private void getData() {
+        int fragmentID = getIntent().getIntExtra("fragment_product_details",0);
+        if(fragmentID == 1){
+            replaceFrament(new ProductDetailsFragment());
+            CURRENT_FRAGMENT = FRAGMENT_PRODUCT_DETAIL;
+        }
     }
 
     @Override //menu cho toolbar
@@ -78,7 +100,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 CURRENT_FRAGMENT = FRAGMENT_HOME;
             }
         }else if(id == R.id.cart){
-            Toast.makeText(this, "Cart Clicked", Toast.LENGTH_SHORT).show();
+            if (CURRENT_FRAGMENT != FRAGMENT_CART){
+                replaceFrament(new CartFragment());
+                CURRENT_FRAGMENT = FRAGMENT_CART;
+            }
         }
         return true;
     }
@@ -92,13 +117,38 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 replaceFrament(new HomeFragment());
                 CURRENT_FRAGMENT = FRAGMENT_HOME;
             }
-        }else if(id == R.id.sale){
-            Toast.makeText(this, "Sale Clicked", Toast.LENGTH_SHORT).show();
-        }else if(id == R.id.cart){
-            Toast.makeText(this, "Cart Clicked", Toast.LENGTH_SHORT).show();
-        }else if(id == R.id.buyHistory){
-            Toast.makeText(this, "History Clicked", Toast.LENGTH_SHORT).show();
-        }else if(id == R.id.profile){
+        }else if(id == R.id.shirt){
+            if (CURRENT_FRAGMENT != FRAGMENT_SHIRT){
+                replaceFrament(new ShirtFragment());
+                CURRENT_FRAGMENT = FRAGMENT_SHIRT;
+            }
+            Toast.makeText(this, "Category Shirt", Toast.LENGTH_SHORT).show();
+
+        } else if(id == R.id.pant){
+            if (CURRENT_FRAGMENT != FRAGMENT_PANT){
+                replaceFrament(new PantFragment());
+                CURRENT_FRAGMENT = FRAGMENT_PANT;
+            }
+            Toast.makeText(this, "Pant Clicked", Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.shoe){
+            if (CURRENT_FRAGMENT != FRAGMENT_SHOE){
+                replaceFrament(new ShoeFragment());
+                CURRENT_FRAGMENT = FRAGMENT_SHOE;
+            }
+            Toast.makeText(this, "Shoe Clicked", Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.other){
+            if (CURRENT_FRAGMENT != FRAGMENT_OTHER_PRODUCT){
+                replaceFrament(new OtherProductFragment());
+                CURRENT_FRAGMENT = FRAGMENT_OTHER_PRODUCT;
+            }
+            Toast.makeText(this, "Other Clicked", Toast.LENGTH_SHORT).show();
+        }else if(id == R.id.cart) {
+            if (CURRENT_FRAGMENT != FRAGMENT_CART){
+                replaceFrament(new CartFragment());
+                CURRENT_FRAGMENT = FRAGMENT_CART;
+            }
+        }
+        else if(id == R.id.profile){
             if (CURRENT_FRAGMENT != FRAGMENT_PROFILE){
                 replaceFrament(new ProfileFragment());
                 CURRENT_FRAGMENT = FRAGMENT_PROFILE;

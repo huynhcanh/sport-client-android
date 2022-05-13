@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="351dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/bnd">
+        </ImageView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:background="@color/white"
+            android:id="@+id/title"
+            android:text="Please enter your address"
+            android:textAlignment="center"
+            android:textColor="#F1D106"
+            android:textSize="34dp">
+
+        </TextView>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/okebnt"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="290dp"
+            android:layout_marginLeft="50dp"
+            android:text="OKE"
+            android:textColor="@color/white"
+            android:background="@drawable/button_custom">
+        </androidx.appcompat.widget.AppCompatButton>
+    </FrameLayout>
+
+</FrameLayout>

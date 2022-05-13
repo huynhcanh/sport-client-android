@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fcart"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="503dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty_cart" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="78dp"
+        android:layout_marginTop="480dp"
+        android:background="@drawable/button_custom"
+        android:text="SHOP NOW"
+        android:textColor="@color/white" />
+</FrameLayout>

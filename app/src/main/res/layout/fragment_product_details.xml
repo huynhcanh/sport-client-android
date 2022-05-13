@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ImageView
+        android:id="@+id/imgview"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_margin="10dp"
+        android:background="#FFFFBB33"
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:id="@+id/nameprd"
+        android:layout_width="145dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="200sp"
+        android:layout_marginTop="10dp"
+        android:text="Name product"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/priceprd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textSize="20sp"
+        android:layout_marginLeft="200dp"
+        android:text="PRICE:"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/makeinprd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:textSize="20sp"
+        android:layout_marginLeft="200dp"
+        android:text="Descirp:"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="103dp"
+        android:text="1"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdd"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/circle_btn"
+        android:text="--"
+        android:textSize="15sp"
+        android:textColor="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnMinus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="305dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/circle_btn"
+        android:text="+"
+        android:textSize="15dp"
+        android:textColor="@color/white"/>
+
+
+    <RadioGroup
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RadioGroup2"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/sizem"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="M"></RadioButton>
+
+        <RadioButton
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="L"></RadioButton>
+        <RadioButton
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="XL"></RadioButton>
+    </RadioGroup>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="200dp"
+        android:id="@+id/buttonadd"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="ADD TO CART+"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_custom"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        android:layout_marginTop="268dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:text="SAME PRODUCT"
+        android:textColor="@color/black"
+        android:padding="10sp"
+        android:layout_marginTop="265dp"></TextView>
+
+    <ListView
+        android:id="@+id/same"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        android:layout_marginTop="325dp"></ListView>
+
+
+</FrameLayout>

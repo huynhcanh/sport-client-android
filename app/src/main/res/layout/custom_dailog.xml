@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="258dp">
+
+
+        <ImageView
+            android:id="@+id/imgview"
+            android:layout_width="137dp"
+            android:layout_height="136dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="#FFFFBB33"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="165dp"
+            android:layout_marginTop="20dp"
+            android:text="NAME PROCUT"
+            android:textSize="20dp"
+            android:textColor="@color/black">
+
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="50dp"
+
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/sizem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M"
+                android:textSize="17dp" />
+
+            <RadioButton
+                android:id="@+id/sizel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L"
+                android:textSize="17dp" />
+
+            <RadioButton
+
+                android:id="@+id/sizexl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XL"
+                android:textSize="17dp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="103dp"
+            android:text="1"
+            android:textSize="25dp"
+            android:textColor="@color/black"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bnt1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/circle_btn"
+            android:text="--"
+            android:textSize="15sp"
+            android:textColor="@color/white"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bnt2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="275dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/circle_btn"
+            android:text="+"
+            android:textSize="15dp"
+            android:textColor="@color/white"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bnt3"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="180dp"
+            android:backgroundTint="@null"
+            android:background="@drawable/button_custom"
+            android:textColor="@color/white"
+            android:text="CANCEL"
+            android:textSize="20dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bnt4"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="180dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_custom"
+            android:text="CONFIRM"
+            android:textSize="20dp" />
+
+        <ImageButton
+            android:id="@+id/bnt5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="330dp"
+            android:layout_marginTop="0dp"
+            android:background="#F42A2A"
+            android:src="@drawable/delete_icon"
+            android:textSize="20dp" />
+    </FrameLayout>
+
+
+
+</FrameLayout>

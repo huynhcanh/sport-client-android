@@ -7,27 +7,36 @@
         android:id="@+id/home"
         android:icon="@drawable/home_icon"/>
 
-    <item
-        android:title = "Sale"
-        android:id="@+id/sale"
-        android:icon="@drawable/sale_icon"/>
-
-    <item android:title="Shopping">
+    <item android:title="Category">
         <menu>
             <item
-                android:title = "Cart"
-                android:id="@+id/cart"
-                android:icon="@drawable/cart_icon"/>
+                android:title = "Shirts"
+                android:id="@+id/shirt"
+                android:icon="@drawable/shirt"/>
 
             <item
-                android:title = "Buy history"
-                android:id="@+id/buyHistory"
-                android:icon="@drawable/history_icon"/>
+                android:title = "Pants"
+                android:id="@+id/pant"
+                android:icon="@drawable/pant"/>
+
+            <item
+                android:title = "Shoe"
+                android:id="@+id/shoe"
+                android:icon="@drawable/shoe"/>
+
+            <item
+                android:title = "Other"
+                android:id="@+id/other"
+                android:icon="@drawable/other"/>
         </menu>
     </item>
 
     <item android:title="Profile">
         <menu>
+            <item
+                android:title = "Cart"
+                android:id="@+id/cart"
+                android:icon="@drawable/cart_icon"/>
             <item
                 android:title = "Profile"
                 android:id="@+id/profile"
