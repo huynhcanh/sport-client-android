@@ -43,6 +43,11 @@
                 android:icon="@drawable/profile_icon"/>
 
             <item
+                android:title = "Order History"
+                android:id="@+id/history"
+                android:icon="@drawable/icon_history"/>
+
+            <item
                 android:title = "Logout"
                 android:id="@+id/logout"
                 android:icon="@drawable/logout_icon"/>

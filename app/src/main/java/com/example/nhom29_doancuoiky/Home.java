@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.nhom29_doancuoiky.fragment.CartFragment;
 import com.example.nhom29_doancuoiky.fragment.HomeFragment;
+import com.example.nhom29_doancuoiky.fragment.OrderHistoryFragment;
 import com.example.nhom29_doancuoiky.fragment.OtherProductFragment;
 import com.example.nhom29_doancuoiky.fragment.PantFragment;
 import com.example.nhom29_doancuoiky.fragment.ProductDetailsFragment;
@@ -39,6 +40,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private static final int FRAGMENT_PANT = 5;
     private static final int FRAGMENT_SHOE = 6;
     private static final int FRAGMENT_OTHER_PRODUCT = 7;
+    private static final int FRAGMENT_ODER_HISTORY = 8;
 
     private int CURRENT_FRAGMENT = FRAGMENT_HOME;
 
@@ -153,7 +155,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 replaceFrament(new ProfileFragment());
                 CURRENT_FRAGMENT = FRAGMENT_PROFILE;
             }
-        }else if(id == R.id.logout){
+        }else if(id == R.id.history){
+            Intent intent = new Intent(this, Login.class);
+            if (CURRENT_FRAGMENT != FRAGMENT_ODER_HISTORY){
+                replaceFrament(new OrderHistoryFragment());
+                CURRENT_FRAGMENT = FRAGMENT_ODER_HISTORY;
+            }
+        }
+        else if(id == R.id.logout){
             Intent intent = new Intent(this, Login.class);
             (this).startActivity(intent);
         }
