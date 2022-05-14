@@ -43,6 +43,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     FloatingActionButton fbAddToCart;
     Product product;
     ProductSize productSize;
+
     public ProductAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Product> productModels) {
         super(context, resource, productModels);
         this.context = context;

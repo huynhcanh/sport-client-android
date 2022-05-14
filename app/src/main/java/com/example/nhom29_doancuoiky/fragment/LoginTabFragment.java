@@ -92,12 +92,12 @@ public class LoginTabFragment extends Fragment {
                             //api call success
                             new Response.Listener<JSONObject>() {
                                 @Override
-                                public void onResponse(JSONObject response) {
-                                    UserApiResponse userApiResponse = new UserConverter().toApiResponse(response);
-                                    Toast.makeText(getContext(), "Welcome "+ userApiResponse.getName(), Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getContext(), Home.class);
-                                    intent.putExtra("user",userApiResponse);
-                                    startActivity(intent);
+                                    public void onResponse(JSONObject response) {
+                                        UserApiResponse userApiResponse = new UserConverter().toApiResponse(response);
+                                        Toast.makeText(getContext(), "Welcome "+ userApiResponse.getName(), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getContext(), Home.class);
+                                        intent.putExtra("user",userApiResponse);
+                                        startActivity(intent);
                                 }
                             },
                             //api call fail
