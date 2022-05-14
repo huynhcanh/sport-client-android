@@ -50,16 +50,9 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setData() {
-        try{
-            userApiResponse = (UserApiResponse) getActivity().getIntent().getSerializableExtra("user");
-            txtEmail.setText(userApiResponse.getEmail());
-            txtPhone.setText(userApiResponse.getPhone());
-            txtName.setText(userApiResponse.getName());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        txtEmail.setText(ApiConstant.userLog.getEmail());
+        txtPhone.setText(ApiConstant.userLog.getPhone());
+        txtName.setText(ApiConstant.userLog.getName());
     }
     private void setEvent() {
         btnSave.setOnClickListener(new View.OnClickListener() {

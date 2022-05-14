@@ -1,50 +1,51 @@
 package com.example.nhom29_doancuoiky.adapter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
-import com.example.nhom29_doancuoiky.fragment.CartFragment;
-import com.example.nhom29_doancuoiky.fragment.EmptyCartFragment;
-import com.example.nhom29_doancuoiky.model.Cart;
-import com.example.nhom29_doancuoiky.model.Product;
+import com.example.nhom29_doancuoiky.constant.ApiConstant;
+import com.example.nhom29_doancuoiky.converter.ProductConverter;
 import com.example.nhom29_doancuoiky.model.ProductSize;
+import com.example.nhom29_doancuoiky.response.ProductApiResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 
-public class ProductAdapter extends ArrayAdapter<Product> {
+public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
     Context context;
     int resource;
-    ArrayList<Product> productModels;
+    ArrayList<ProductApiResponse> productModels;
 
     View convertView;
     ImageView ivImage;
-    TextView tvName,tvPrice;
+    TextView tvName, tvPrice;
     FloatingActionButton fbAddToCart;
-    Product product;
+    ProductApiResponse productApiResponse;
     ProductSize productSize;
 
-    public ProductAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Product> productModels) {
+    public ProductAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ProductApiResponse> productModels) {
         super(context, resource, productModels);
         this.context = context;
         this.resource = resource;
@@ -59,34 +60,50 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(resource,null);
+        convertView = LayoutInflater.from(context).inflate(resource, null);
+        setControl(convertView);
+        productApiResponse = productModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
+        tvName.setText(productApiResponse.getName());
+        tvPrice.setText(Float.toString(productApiResponse.getUnitPrice()) + "$");
+        Picasso.get().load(productApiResponse.getImages().get(0)).into(ivImage);
+        setEvent(position);
+        return convertView;
+    }
+
+    private void setControl(View convertView) {
         ivImage = convertView.findViewById(R.id.ivProductImage);
         tvName = convertView.findViewById(R.id.tvProductName);
         tvPrice = convertView.findViewById(R.id.tvProductPrice);
         fbAddToCart = convertView.findViewById(R.id.fbAddToCart);
-
-        setControl();
-        product = productModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvName.setText(product.getName());
-        tvPrice.setText(Float.toString(product.getPrice()) + "$");
-        Picasso.get().load(product.getImage()).into(ivImage);
-
-        setEvent();
-
-        return convertView;
     }
 
-    private void setControl() {
-
-    }
-
-    private void setEvent() {
+    private void setEvent(int position) {
         ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, Home.class);
-                intent.putExtra("fragment_product_details",1);
-                context.startActivity(intent);
+
+                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                String url = ApiConstant.URL_API + "/product?id=" + productModels.get(position).getId();
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        //api call success
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                productApiResponse = new ProductConverter().toApiResponse(response);
+                                Intent intent = new Intent(getContext(), Home.class);
+                                intent.putExtra("product_detail", productApiResponse);
+                                intent.putExtra("fragment_product_details", 1);
+                                context.startActivity(intent);
+                            }
+                        },
+                        //api call fail
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getContext(), "Ops! Please try again!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                requestQueue.add(jsonObjectRequest);
             }
         });
 
@@ -101,6 +118,49 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
                 // gui du lieu sang cart o day
 
+                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                String url = ApiConstant.URL_API + "/product?id=" + productModels.get(position).getId();
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        //api call success
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                productApiResponse = new ProductConverter().toApiResponse(response);
+
+                                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                                StringBuilder url = new StringBuilder(ApiConstant.URL_API)
+                                        .append("cart?")
+                                        .append("productId=" + productApiResponse.getId().toString())
+                                        .append("&sizeCode=nguoi-lon")
+                                        .append("&userId=" + ApiConstant.userLog.getId().toString())
+                                        .append("&quantity=1");
+                                System.out.println(url.toString());
+                                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url.toString(), null,
+                                        //api call success
+                                        new Response.Listener<JSONObject>() {
+                                            @Override
+                                            public void onResponse(JSONObject response) {
+                                                Toast.makeText(getContext(), "Add success!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        },
+                                        //api call fail
+                                        new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Toast.makeText(getContext(), "Sản phẩm đã thêm hoặc chưa có hàng loại đó", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                requestQueue.add(jsonObjectRequest);
+                            }
+                        },
+                        //api call fail
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getContext(), "Ops! Please try again!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                requestQueue.add(jsonObjectRequest);
             }
         });
     }

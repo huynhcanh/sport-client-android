@@ -94,9 +94,10 @@ public class LoginTabFragment extends Fragment {
                                 @Override
                                     public void onResponse(JSONObject response) {
                                         UserApiResponse userApiResponse = new UserConverter().toApiResponse(response);
+                                        ApiConstant.userLog = userApiResponse;
                                         Toast.makeText(getContext(), "Welcome "+ userApiResponse.getName(), Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getContext(), Home.class);
-                                        intent.putExtra("user",userApiResponse);
+                                        intent.putExtra("user",ApiConstant.userLog);
                                         startActivity(intent);
                                 }
                             },
