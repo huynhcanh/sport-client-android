@@ -12,9 +12,23 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.nhom29_doancuoiky.ForgotPassword;
 import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
+import com.example.nhom29_doancuoiky.constant.ApiConstant;
+import com.example.nhom29_doancuoiky.converter.UserConverter;
+import com.example.nhom29_doancuoiky.response.UserApiResponse;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginTabFragment extends Fragment {
     EditText txtEmail,txtPass;
@@ -30,6 +44,9 @@ public class LoginTabFragment extends Fragment {
         setControl();
         setAppearance();
         setEvent();
+
+        txtEmail.setText("bingbang004@gmail.com");
+        txtPass.setText("123");
 
         return root;
     }
@@ -63,8 +80,34 @@ public class LoginTabFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(dataCheck()){
-                    Intent intent = new Intent(getContext(), Home.class);
-                    startActivity(intent);
+
+                    Map<String,String> params = new HashMap<>();
+                    params.put("email",txtEmail.getText().toString());
+                    params.put("password",txtPass.getText().toString());
+                    JSONObject jsonObject = new JSONObject(params);
+
+                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                    String url = ApiConstant.URL_API +"user/login";
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                            //api call success
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                    public void onResponse(JSONObject response) {
+                                        UserApiResponse userApiResponse = new UserConverter().toApiResponse(response);
+                                        Toast.makeText(getContext(), "Welcome "+ userApiResponse.getName(), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getContext(), Home.class);
+                                        intent.putExtra("user",userApiResponse);
+                                        startActivity(intent);
+                                }
+                            },
+                            //api call fail
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getContext(), "Ops! Please try again!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    requestQueue.add(jsonObjectRequest);
                 }
             }
         });

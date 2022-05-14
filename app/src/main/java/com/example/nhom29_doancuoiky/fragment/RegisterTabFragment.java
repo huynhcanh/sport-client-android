@@ -13,9 +13,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.nhom29_doancuoiky.EnterOTP;
 import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
+import com.example.nhom29_doancuoiky.constant.ApiConstant;
+import com.example.nhom29_doancuoiky.converter.UserConverter;
+import com.example.nhom29_doancuoiky.response.UserApiResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -27,6 +36,10 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class RegisterTabFragment extends Fragment {
@@ -42,9 +55,7 @@ public class RegisterTabFragment extends Fragment {
     @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = (ViewGroup) inflater.inflate(R.layout.fragment_register, container, false);
-
         mAuth = FirebaseAuth.getInstance();
-
         setControl();
         setAppearance();
         setEvent();
@@ -65,9 +76,36 @@ public class RegisterTabFragment extends Fragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //check all field
                 if(dataCheck()) {
                     String phoneNumber = "+84" + txtPhone.getText().toString();
-                    startVerifyPhoneNumber(phoneNumber);
+
+                    //register
+                    Map<String,String> params = new HashMap<>();
+                    params.put("email",txtEmail.getText().toString());
+                    params.put("password",txtPassword.getText().toString());
+                    params.put("name",txtName.getText().toString());
+                    params.put("phone",txtPhone.getText().toString());
+                    JSONObject jsonObject = new JSONObject(params);
+
+                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                    String url = ApiConstant.URL_API +"user/register";
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                            //api call success
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    startVerifyPhoneNumber(phoneNumber);
+                                }
+                            },
+                            //api call fail
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getContext(), "Ops! Please try again!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    requestQueue.add(jsonObjectRequest);
                 }
             }
         });

@@ -1,5 +1,6 @@
 package com.example.nhom29_doancuoiky.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +14,33 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
+import com.example.nhom29_doancuoiky.constant.ApiConstant;
+import com.example.nhom29_doancuoiky.converter.UserConverter;
 import com.example.nhom29_doancuoiky.model.User;
+import com.example.nhom29_doancuoiky.response.UserApiResponse;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileFragment extends Fragment {
     EditText txtEmail,txtPhone,txtName,txtPassword;
     Button btnSave, btnCancel;
     ViewGroup root;
-    User user;
+    UserApiResponse userApiResponse;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         root = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
-
-        user = new User(1,"johnnyhoang482@gmail.com","0355114279","Johnny Hoang","123");
 
         setControl();
         setData();
@@ -36,17 +50,54 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setData() {
-        txtEmail.setText(user.getEmail());
-        txtPhone.setText(user.getPhone());
-        txtName.setText(user.getName());
-        txtPassword.setText(user.getPassword());
+        try{
+            userApiResponse = (UserApiResponse) getActivity().getIntent().getSerializableExtra("user");
+            txtEmail.setText(userApiResponse.getEmail());
+            txtPhone.setText(userApiResponse.getPhone());
+            txtName.setText(userApiResponse.getName());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
     private void setEvent() {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(dataCheck()){
-                    Toast.makeText(getContext(), "Save Clicked", Toast.LENGTH_SHORT).show();
+                    Map<String,String> params = new HashMap<>();
+                    params.put("id", userApiResponse.getId().toString());
+                    params.put("email",txtEmail.getText().toString());
+                    params.put("password",txtPassword.getText().toString());
+                    params.put("name",txtName.getText().toString());
+                    params.put("phone",txtPhone.getText().toString());
+
+                    JSONObject jsonObject = new JSONObject(params);
+
+                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                    String url = ApiConstant.URL_API +"user";
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,
+                            //api call success
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    userApiResponse = new UserConverter().toApiResponse(response);
+                                    Intent intent = new Intent(getContext(), Home.class);
+                                    intent.putExtra("user",userApiResponse);
+                                    startActivity(intent);
+                                }
+                            },
+                            //api call fail
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getContext(), "Ops! Please try again!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    requestQueue.add(jsonObjectRequest);
+
+                    Toast.makeText(getContext(), "Save Done !", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -54,6 +105,9 @@ public class ProfileFragment extends Fragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Home.class);
+                intent.putExtra("user",userApiResponse);
+                startActivity(intent);
                 Toast.makeText(getContext(), "Cancel Clicked", Toast.LENGTH_SHORT).show();
             }
         });
