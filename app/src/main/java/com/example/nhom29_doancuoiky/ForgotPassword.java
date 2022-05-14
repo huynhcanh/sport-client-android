@@ -82,65 +82,80 @@ public class ForgotPassword extends AppCompatActivity {
             public void onClick(View view) {
                 String email = txtEmail.getText().toString();
                 if (!email.equals("")) {
-
-                    final String username = "johnnyhoang482@gmail.com";
-                    final String password = "ahtxuatpvsbecehk";
-                    Random random = new Random();
-                    int randomNumber = random.nextInt(999999);
-                    String messageToSend = String.valueOf(randomNumber);
-                    Properties props = new Properties();
-                    props.put("mail.smtp.auth", "true");
-                    props.put("mail.smtp.starttls.enable", "true");
-                    props.put("mail.smtp.host", "smtp.gmail.com");
-                    props.put("mail.smtp.port", "587");
-                    Session session = Session.getInstance(props,
-                            new javax.mail.Authenticator() {
+                    RequestQueue requestQueue = Volley.newRequestQueue(ForgotPassword.this);
+                    String url = ApiConstant.URL_API + "user?email=" + email;
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                            //api call success
+                            new Response.Listener<JSONObject>() {
                                 @Override
-                                protected PasswordAuthentication getPasswordAuthentication() {
-                                    return new PasswordAuthentication(username, password);
+                                public void onResponse(JSONObject response) {
+
+                                    userApiResponse = new UserConverter().toApiResponse(response);
+
+                                    final String username = "johnnyhoang482@gmail.com";
+                                    final String password = "ahtxuatpvsbecehk";
+                                    Random random = new Random();
+                                    int randomNumber = random.nextInt(999999);
+                                    String messageToSend = String.valueOf(randomNumber);
+                                    Properties props = new Properties();
+                                    props.put("mail.smtp.auth", "true");
+                                    props.put("mail.smtp.starttls.enable", "true");
+                                    props.put("mail.smtp.host", "smtp.gmail.com");
+                                    props.put("mail.smtp.port", "587");
+                                    Session session = Session.getInstance(props,
+                                            new javax.mail.Authenticator() {
+                                                @Override
+                                                protected PasswordAuthentication getPasswordAuthentication() {
+                                                    return new PasswordAuthentication(username, password);
+                                                }
+                                            });
+                                    try {
+                                        Message message = new MimeMessage(session);
+                                        message.setFrom(new InternetAddress(username));
+                                        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+                                        message.setSubject("Thay đổi mật khẩu!");
+                                        message.setText(messageToSend);
+                                        Transport.send(message);
+                                    } catch (MessagingException e) {
+                                        throw new RuntimeException();
+                                    }
+
+                                    RequestQueue requestQueue = Volley.newRequestQueue(ForgotPassword.this);
+                                    String url = ApiConstant.URL_API + "user";
+                                    Map<String,String> params = new HashMap<>();
+                                    params.put("id",userApiResponse.getId().toString());
+                                    params.put("password",messageToSend);
+
+                                    JSONObject jsonObject = new JSONObject(params);
+                                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,
+                                            //api call success
+                                            new Response.Listener<JSONObject>() {
+                                                @Override
+                                                public void onResponse(JSONObject response) {
+                                                    Toast.makeText(view.getContext(), "Mail đã được gửi đi", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(view.getContext(), Login.class);
+                                                    startActivity(intent);
+                                                }
+                                            },
+                                            //api call fail
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                }
+                                            });
+                                    requestQueue.add(jsonObjectRequest);
+
+                                }
+                            },
+                            //api call fail
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(view.getContext(), "Email này chưa được đăng kí  !", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                    try {
-                        Message message = new MimeMessage(session);
-                        message.setFrom(new InternetAddress(username));
-                        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-                        message.setSubject("Thay đổi mật khẩu!");
-                        message.setText(messageToSend);
-                        Transport.send(message);
-                    } catch (MessagingException e) {
-                        throw new RuntimeException();
-                    }
+                    requestQueue.add(jsonObjectRequest);
 
-//                    RequestQueue requestQueue = Volley.newRequestQueue(ForgotPassword.this);
-//
-//                    String url2 = ApiConstant.URL_API + "user/";
-//                    Map<String, String> params = new HashMap<>();
-//                    params.put("id", userApiResponse.getId().toString());
-//                    params.put("password", messageToSend);
-//
-//                    System.out.println(params.get("id"));
-//                    System.out.println(params.get("password"));
-//                    JSONObject jsonObject = new JSONObject(params);
-//                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url2, jsonObject,
-//                            //api call success
-//                            new Response.Listener<JSONObject>() {
-//                                @Override
-//                                public void onResponse(JSONObject response) {
-//                                    Toast.makeText(getApplicationContext(), "Password mới đã được gửi vào email", Toast.LENGTH_LONG).show();
-//                                }
-//                            },
-//                            //api call fail
-//                            new Response.ErrorListener() {
-//                                @Override
-//                                public void onErrorResponse(VolleyError error) {
-//                                    Toast.makeText(view.getContext(), "Ops! Please try again!", Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                    requestQueue.add(jsonObjectRequest);
-
-
-                    Intent intent = new Intent(view.getContext(), Login.class);
-                    startActivity(intent);
                 } else {
                     Toast.makeText(view.getContext(), "Email trống !", Toast.LENGTH_SHORT).show();
                 }
