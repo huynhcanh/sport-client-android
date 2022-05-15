@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,11 +23,11 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderHistory> {
     Context context;
     int resource;
     ArrayList<OrderHistory> OrderHistoryModels;
+    OrderHistory orderHistory;
 
-    View convertView;
     ImageView ivOrderHistory;
-    TextView tvOrderDate,tvTotalMoney;
-    OrderHistory OrderHistory;
+    TextView tvOrderDate,tvTotalMoney,tvStatus;
+
 
     public OrderHistoryAdapter(@NonNull Context context, int resource, @NonNull ArrayList<OrderHistory> OrderHistoryModels) {
         super(context, resource, OrderHistoryModels);
@@ -47,25 +48,14 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderHistory> {
 
         tvOrderDate = convertView.findViewById(R.id.tvOrderDate);
         tvTotalMoney = convertView.findViewById(R.id.tvTotalMoney);
+        tvStatus = convertView.findViewById(R.id.tvStatus);
         ivOrderHistory = convertView.findViewById(R.id.ivOrderHistory);
 
-        OrderHistory = OrderHistoryModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvOrderDate.setText(OrderHistory.getOrderDate());
-        tvTotalMoney.setText(Float.toString(OrderHistory.getTotalMoney()) + "$");
-
-        setEvent();
+        orderHistory = OrderHistoryModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
+        tvOrderDate.setText(orderHistory.getOrderDate());
+        tvTotalMoney.setText(Float.toString(orderHistory.getTotalMoney()) + "$");
+        tvStatus.setText(orderHistory.getStatus());
 
         return convertView;
-    }
-
-    private void setEvent() {
-        ivOrderHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, Home.class);
-                intent.putExtra("fragment_OrderHistory_details",1);
-                context.startActivity(intent);
-            }
-        });
     }
 }

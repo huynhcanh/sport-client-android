@@ -4,16 +4,17 @@ import java.io.Serializable;
 
 public class OrderHistory implements Serializable {
     Integer id;
-    String orderDate;
+    String orderDate,status;
     Float totalMoney;
 
     public OrderHistory() {
     }
 
-    public OrderHistory(Integer id, String orderDate, Float totalMoney) {
+    public OrderHistory(Integer id, String orderDate, String status, Float totalMoney) {
         this.id = id;
         this.orderDate = orderDate;
         this.totalMoney = totalMoney;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -30,6 +31,14 @@ public class OrderHistory implements Serializable {
 
     public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Float getTotalMoney() {

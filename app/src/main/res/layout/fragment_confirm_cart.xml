@@ -26,7 +26,7 @@
         android:layout_height="46dp"
         android:layout_marginTop="85dp"
         android:text="Name: "
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textColor="@color/black" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_height="44dp"
         android:layout_marginTop="150dp"
         android:text="Phone: "
-        android:textSize="30dp"
+        android:textSize="25sp"
         android:textColor="@color/black" />
 
     <TextView
@@ -43,24 +43,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="270dp"
         android:text="Address: "
-        android:textSize="30dp"
+        android:textSize="25sp"
         android:textColor="@color/black" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="210dp"
-        android:textSize="30dp"
+        android:textSize="25sp"
         android:id="@+id/total_price"
         android:text="TOTAL Monney : "
         android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/address"
-        android:layout_width="300dp"
-        android:textSize="25dp"
+        android:layout_width="275dp"
+        android:textSize="25sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="265dp"
-        android:layout_marginLeft="120dp">
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="110dp">
     </EditText>
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="250dp"

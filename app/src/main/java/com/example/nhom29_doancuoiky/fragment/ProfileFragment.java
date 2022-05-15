@@ -108,7 +108,6 @@ public class ProfileFragment extends Fragment {
                 Intent intent = new Intent(getContext(), Home.class);
                 intent.putExtra("user",userApiResponse);
                 startActivity(intent);
-                Toast.makeText(getContext(), "Cancel Clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
