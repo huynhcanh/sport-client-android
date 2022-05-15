@@ -6,11 +6,23 @@ public class CartApiResponse implements Serializable {
     private Long id;
     private Integer quantity;
     private Float totalMoney;
+    //productsize
     private String productSizeName;
-    private String userName;
+    private String sizeCode;
+    //product
     private String linkImgProd;
     private String nameProd;
-    private String sizeCode;
+    private Long productId;
+
+    private String userName;
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
 
     public String getSizeCode() {
         return sizeCode;

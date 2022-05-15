@@ -41,26 +41,19 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/sizem"
+                android:id="@+id/sizete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="M"
+                android:text="Tre em"
                 android:textSize="17dp" />
 
             <RadioButton
-                android:id="@+id/sizel"
+                android:id="@+id/sizenl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="L"
+                android:text="Nguoi lon"
                 android:textSize="17dp" />
 
-            <RadioButton
-
-                android:id="@+id/sizexl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="XL"
-                android:textSize="17dp" />
         </RadioGroup>
 
         <TextView

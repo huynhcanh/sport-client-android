@@ -1,5 +1,7 @@
 package com.example.nhom29_doancuoiky.model;
 
+import com.example.nhom29_doancuoiky.response.ProductSizeApiResponse;
+
 import java.io.Serializable;
 
 public class Cart implements Serializable {
@@ -9,7 +11,15 @@ public class Cart implements Serializable {
     private String size;
     private Integer price;
     private Integer totalprice;
+    private ProductSizeApiResponse productSizeApiResponse;
 
+    public ProductSizeApiResponse getProductSizeApiResponse() {
+        return productSizeApiResponse;
+    }
+
+    public void setProductSizeApiResponse(ProductSizeApiResponse productSizeApiResponse) {
+        this.productSizeApiResponse = productSizeApiResponse;
+    }
 
     public Integer getTotalprice() {
         return totalprice;

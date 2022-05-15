@@ -19,6 +19,8 @@ public class CartConverter {
             JSONArray jsonArray = jsonObject.getJSONObject("productsize").getJSONObject("product").getJSONArray("images");
             cartApiResponse.setLinkImgProd(jsonArray.getJSONObject(0).getString("image").replaceAll("\\\\", "").trim());
             cartApiResponse.setNameProd(jsonObject.getJSONObject("productsize").getJSONObject("product").getString("name"));
+            cartApiResponse.setSizeCode(jsonObject.getJSONObject("productsize").getJSONObject("size").getString("code"));
+            cartApiResponse.setProductId(jsonObject.getJSONObject("productsize").getJSONObject("product").getLong("id"));
             return cartApiResponse;
         } catch (JSONException e) {
             e.printStackTrace();
