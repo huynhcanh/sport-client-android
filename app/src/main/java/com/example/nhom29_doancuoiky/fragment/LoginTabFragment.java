@@ -97,7 +97,6 @@ public class LoginTabFragment extends Fragment {
                                         ApiConstant.userLog = userApiResponse;
                                         Toast.makeText(getContext(), "Welcome "+ userApiResponse.getName(), Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getContext(), Home.class);
-                                        intent.putExtra("user",ApiConstant.userLog);
                                         startActivity(intent);
                                 }
                             },
