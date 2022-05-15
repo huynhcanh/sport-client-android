@@ -79,38 +79,37 @@ public class LoginTabFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if(dataCheck()){
-//
-//                    Map<String,String> params = new HashMap<>();
-//                    params.put("email",txtEmail.getText().toString());
-//                    params.put("password",txtPass.getText().toString());
-//                    JSONObject jsonObject = new JSONObject(params);
-//
-//                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-//                    String url = ApiConstant.URL_API +"user/login";
-//                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
-//                            //api call success
-//                            new Response.Listener<JSONObject>() {
-//                                @Override
-//                                    public void onResponse(JSONObject response) {
-//                                        UserApiResponse userApiResponse = new UserConverter().toApiResponse(response);
-//                                        Toast.makeText(getContext(), "Welcome "+ userApiResponse.getName(), Toast.LENGTH_SHORT).show();
-//                                        Intent intent = new Intent(getContext(), Home.class);
-//                                        intent.putExtra("user",userApiResponse);
-//                                        startActivity(intent);
-//                                }
-//                            },
-//                            //api call fail
-//                            new Response.ErrorListener() {
-//                                @Override
-//                                public void onErrorResponse(VolleyError error) {
-//                                    Toast.makeText(getContext(), "Ops! Please try again!", Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                    requestQueue.add(jsonObjectRequest);
-//                }
-                Intent intent = new Intent(getContext(), Home.class);
-                startActivity(intent);
+                if(dataCheck()){
+
+                    Map<String,String> params = new HashMap<>();
+                    params.put("email",txtEmail.getText().toString());
+                    params.put("password",txtPass.getText().toString());
+                    JSONObject jsonObject = new JSONObject(params);
+
+                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                    String url = ApiConstant.URL_API +"user/login";
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                            //api call success
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                    public void onResponse(JSONObject response) {
+                                        UserApiResponse userApiResponse = new UserConverter().toApiResponse(response);
+                                        ApiConstant.userLog = userApiResponse;
+                                        Toast.makeText(getContext(), "Welcome "+ userApiResponse.getName(), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getContext(), Home.class);
+                                        intent.putExtra("user",ApiConstant.userLog);
+                                        startActivity(intent);
+                                }
+                            },
+                            //api call fail
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getContext(), "Ops! Please try again!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    requestQueue.add(jsonObjectRequest);
+                }
             }
         });
 

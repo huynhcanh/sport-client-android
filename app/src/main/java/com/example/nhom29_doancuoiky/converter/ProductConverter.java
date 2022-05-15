@@ -23,16 +23,16 @@ public class ProductConverter {
             productApiResponse.setDescription(jsonObject.getString("description"));
             List<String> images = new ArrayList<>();
             JSONArray jsonArray = jsonObject.getJSONArray("images");
-            for(int i =0; i< jsonArray.length(); i++)
-            {
-                images.add(jsonArray.getJSONObject(i).toString());
+            for(int i =0; i< jsonArray.length(); i++) {
+                images.add(jsonArray.getJSONObject(i).getString("image").toString().replaceAll("\\\\", "").trim());
             }
             productApiResponse.setImages(images);
 
+            return productApiResponse;
         } catch (JSONException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
 }
