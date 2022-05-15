@@ -60,7 +60,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 if(dataCheck()){
                     Map<String,String> params = new HashMap<>();
-                    params.put("id", userApiResponse.getId().toString());
+                    params.put("id", ApiConstant.userLog.getId().toString());
                     params.put("email",txtEmail.getText().toString());
                     params.put("password",txtPassword.getText().toString());
                     params.put("name",txtName.getText().toString());
@@ -75,9 +75,8 @@ public class ProfileFragment extends Fragment {
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    userApiResponse = new UserConverter().toApiResponse(response);
+                                    ApiConstant.userLog = new UserConverter().toApiResponse(response);
                                     Intent intent = new Intent(getContext(), Home.class);
-                                    intent.putExtra("user",userApiResponse);
                                     startActivity(intent);
                                 }
                             },
@@ -99,7 +98,6 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), Home.class);
-                intent.putExtra("user",userApiResponse);
                 startActivity(intent);
                 Toast.makeText(getContext(), "Cancel Clicked", Toast.LENGTH_SHORT).show();
             }
