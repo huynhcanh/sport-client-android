@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,13 +28,13 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.PasswordAuthentication;
 
 
 public class ForgotPassword extends AppCompatActivity {
@@ -122,9 +121,9 @@ public class ForgotPassword extends AppCompatActivity {
 
                                     RequestQueue requestQueue = Volley.newRequestQueue(ForgotPassword.this);
                                     String url = ApiConstant.URL_API + "user";
-                                    Map<String,String> params = new HashMap<>();
-                                    params.put("id",userApiResponse.getId().toString());
-                                    params.put("password",messageToSend);
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("id", userApiResponse.getId().toString());
+                                    params.put("password", messageToSend);
 
                                     JSONObject jsonObject = new JSONObject(params);
                                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,

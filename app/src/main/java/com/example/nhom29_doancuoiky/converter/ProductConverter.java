@@ -11,8 +11,7 @@ import java.util.List;
 
 public class ProductConverter {
 
-    public ProductApiResponse toApiResponse(JSONObject jsonObject)
-    {
+    public ProductApiResponse toApiResponse(JSONObject jsonObject) {
         try {
             ProductApiResponse productApiResponse = new ProductApiResponse();
             productApiResponse.setId(jsonObject.getLong("id"));
@@ -23,7 +22,7 @@ public class ProductConverter {
             productApiResponse.setDescription(jsonObject.getString("description"));
             List<String> images = new ArrayList<>();
             JSONArray jsonArray = jsonObject.getJSONArray("images");
-            for(int i =0; i< jsonArray.length(); i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
                 images.add(jsonArray.getJSONObject(i).getString("image").toString().replaceAll("\\\\", "").trim());
             }
             productApiResponse.setImages(images);

@@ -20,13 +20,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
-
 import com.example.nhom29_doancuoiky.adapter.OrderHistoryAdapter;
-import com.example.nhom29_doancuoiky.adapter.ProductAdapter;
 import com.example.nhom29_doancuoiky.constant.ApiConstant;
 import com.example.nhom29_doancuoiky.converter.OrderConverter;
-import com.example.nhom29_doancuoiky.converter.ProductConverter;
-import com.example.nhom29_doancuoiky.model.OrderHistory;
 import com.example.nhom29_doancuoiky.response.OrderApiResponse;
 
 import org.json.JSONArray;
@@ -61,7 +57,7 @@ public class OrderHistoryFragment extends Fragment {
     private void addData() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        String url = ApiConstant.URL_API + "orders?idNguoiDung="+ApiConstant.userLog.getId()+"&soDonHang=100&trang=1";
+        String url = ApiConstant.URL_API + "orders?idNguoiDung=" + ApiConstant.userLog.getId() + "&soDonHang=100&trang=1";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -78,8 +74,8 @@ public class OrderHistoryFragment extends Fragment {
                                 @Override
                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                     Intent intent = new Intent(getActivity(), Home.class);
-                                    intent.putExtra("fragment_product_details",3);
-                                    intent.putExtra("idOrder",listOrder.get(i).getId());
+                                    intent.putExtra("fragment_product_details", 3);
+                                    intent.putExtra("idOrder", listOrder.get(i).getId());
                                     getActivity().startActivity(intent);
                                 }
                             });
@@ -101,9 +97,9 @@ public class OrderHistoryFragment extends Fragment {
         lvOrderHistory = view.findViewById(R.id.lvOrderHistory);
     }
 
-    private void replaceFrament(Fragment fragment){
+    private void replaceFrament(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame,fragment);
+        fragmentTransaction.replace(R.id.content_frame, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

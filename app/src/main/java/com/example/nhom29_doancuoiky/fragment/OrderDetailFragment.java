@@ -21,11 +21,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
 import com.example.nhom29_doancuoiky.adapter.OrderDetailAdapter;
-import com.example.nhom29_doancuoiky.adapter.ProductAdapter;
 import com.example.nhom29_doancuoiky.constant.ApiConstant;
 import com.example.nhom29_doancuoiky.converter.OrderDetailConverter;
-import com.example.nhom29_doancuoiky.converter.ProductConverter;
-import com.example.nhom29_doancuoiky.model.OrderDetail;
 import com.example.nhom29_doancuoiky.response.OrderDetailApiResponse;
 
 import org.json.JSONArray;
@@ -61,14 +58,14 @@ public class OrderDetailFragment extends Fragment {
     }
 
     private void addData() {
-        Long idOrder = getActivity().getIntent().getLongExtra("idOrder",0);
-        if(idOrder == 0){
+        Long idOrder = getActivity().getIntent().getLongExtra("idOrder", 0);
+        if (idOrder == 0) {
             Intent intent = new Intent(getActivity(), Home.class);
-            intent.putExtra("fragment_product_details",2);
+            intent.putExtra("fragment_product_details", 2);
             getActivity().startActivity(intent);
         }
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        String url = ApiConstant.URL_API + "orderdetails?idOrder="+idOrder;
+        String url = ApiConstant.URL_API + "orderdetails?idOrder=" + idOrder;
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -84,12 +81,12 @@ public class OrderDetailFragment extends Fragment {
                             for (int i = 0; i < listOrderDetail.size(); i++) {
                                 sum += listOrderDetail.get(i).getTotalMoney();
                             }
-                            tvTotalMoney.setText("TOTAL Money: "+ sum);
+                            tvTotalMoney.setText("TOTAL Money: " + sum);
                             btnOK.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     Intent intent = new Intent(getActivity(), Home.class);
-                                    intent.putExtra("fragment_product_details",2);
+                                    intent.putExtra("fragment_product_details", 2);
                                     getActivity().startActivity(intent);
                                 }
                             });
@@ -106,13 +103,6 @@ public class OrderDetailFragment extends Fragment {
                     }
                 });
         requestQueue.add(jsonArrayRequest);
-
-//        listOrder = new ArrayList<>();
-//        listOrder.add(new OrderDetail(1,"Ball", 1, "50000", "https://sc04.alicdn.com/kf/U821fdbb2bbdc42fa92cbb62d4b74d612h.jpg"));
-//        listOrder.add(new OrderDetail(1,"asdasd", 1, "30000", "https://sc04.alicdn.com/kf/U821fdbb2bbdc42fa92cbb62d4b74d612h.jpg"));
-//        listOrder.add(new OrderDetail(1,"dhgsdf", 1, "40000", "https://sc04.alicdn.com/kf/U821fdbb2bbdc42fa92cbb62d4b74d612h.jpg"));
-//        listOrder.add(new OrderDetail(1,"xvcxll", 1, "50000", "https://sc04.alicdn.com/kf/U821fdbb2bbdc42fa92cbb62d4b74d612h.jpg"));
-//        listOrder.add(new OrderDetail(1,"asd", 1, "60000", "https://sc04.alicdn.com/kf/U821fdbb2bbdc42fa92cbb62d4b74d612h.jpg"));
     }
 
     private void setControl() {

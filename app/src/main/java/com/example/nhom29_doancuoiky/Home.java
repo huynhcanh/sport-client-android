@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -27,7 +26,6 @@ import com.example.nhom29_doancuoiky.fragment.ProductDetailsFragment;
 import com.example.nhom29_doancuoiky.fragment.ProfileFragment;
 import com.example.nhom29_doancuoiky.fragment.ShirtFragment;
 import com.example.nhom29_doancuoiky.fragment.ShoeFragment;
-import com.example.nhom29_doancuoiky.response.UserApiResponse;
 import com.google.android.material.navigation.NavigationView;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,7 +54,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toogle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,
+        ActionBarDrawerToggle toogle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.nav_drawer_open, R.string.nav_drawer_close);
         drawerLayout.addDrawerListener(toogle);
         toogle.syncState();
@@ -72,7 +70,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         fm.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
-                if(getSupportFragmentManager().getBackStackEntryCount() == 0) finish();
+                if (getSupportFragmentManager().getBackStackEntryCount() == 0) finish();
             }
         });
 
@@ -81,16 +79,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void getData() {
-        int fragmentID = getIntent().getIntExtra("fragment_product_details",0);
-        if(fragmentID == 1){
+        int fragmentID = getIntent().getIntExtra("fragment_product_details", 0);
+        if (fragmentID == 1) {
             replaceFrament(new ProductDetailsFragment());
             CURRENT_FRAGMENT = FRAGMENT_PRODUCT_DETAIL;
-        }
-        else if(fragmentID == 2){
+        } else if (fragmentID == 2) {
             replaceFrament(new OrderHistoryFragment());
             CURRENT_FRAGMENT = FRAGMENT_ODER_HISTORY;
 
-        }else if(fragmentID == 3){
+        } else if (fragmentID == 3) {
             replaceFrament(new OrderDetailFragment());
             CURRENT_FRAGMENT = FRAGMENT_ODER_DETAIL;
         }
@@ -98,22 +95,22 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override //menu cho toolbar
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override // bat su kien select cho toolbar
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.search){
+        if (id == R.id.search) {
             Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
-        }else if(id == R.id.home){
-            if (CURRENT_FRAGMENT != FRAGMENT_HOME){
+        } else if (id == R.id.home) {
+            if (CURRENT_FRAGMENT != FRAGMENT_HOME) {
                 replaceFrament(new HomeFragment());
                 CURRENT_FRAGMENT = FRAGMENT_HOME;
             }
-        }else if(id == R.id.cart){
-            if (CURRENT_FRAGMENT != FRAGMENT_CART){
+        } else if (id == R.id.cart) {
+            if (CURRENT_FRAGMENT != FRAGMENT_CART) {
                 replaceFrament(new CartFragment());
                 CURRENT_FRAGMENT = FRAGMENT_CART;
             }
@@ -125,55 +122,53 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         item.setCheckable(true);
-        if(id == R.id.home){
-            if (CURRENT_FRAGMENT != FRAGMENT_HOME){
+        if (id == R.id.home) {
+            if (CURRENT_FRAGMENT != FRAGMENT_HOME) {
                 replaceFrament(new HomeFragment());
                 CURRENT_FRAGMENT = FRAGMENT_HOME;
             }
-        }else if(id == R.id.shirt){
-            if (CURRENT_FRAGMENT != FRAGMENT_SHIRT){
+        } else if (id == R.id.shirt) {
+            if (CURRENT_FRAGMENT != FRAGMENT_SHIRT) {
                 replaceFrament(new ShirtFragment());
                 CURRENT_FRAGMENT = FRAGMENT_SHIRT;
             }
             Toast.makeText(this, "Category Shirt", Toast.LENGTH_SHORT).show();
 
-        } else if(id == R.id.pant){
-            if (CURRENT_FRAGMENT != FRAGMENT_PANT){
+        } else if (id == R.id.pant) {
+            if (CURRENT_FRAGMENT != FRAGMENT_PANT) {
                 replaceFrament(new PantFragment());
                 CURRENT_FRAGMENT = FRAGMENT_PANT;
             }
             Toast.makeText(this, "Pant Clicked", Toast.LENGTH_SHORT).show();
-        } else if(id == R.id.shoe){
-            if (CURRENT_FRAGMENT != FRAGMENT_SHOE){
+        } else if (id == R.id.shoe) {
+            if (CURRENT_FRAGMENT != FRAGMENT_SHOE) {
                 replaceFrament(new ShoeFragment());
                 CURRENT_FRAGMENT = FRAGMENT_SHOE;
             }
             Toast.makeText(this, "Shoe Clicked", Toast.LENGTH_SHORT).show();
-        } else if(id == R.id.other){
-            if (CURRENT_FRAGMENT != FRAGMENT_OTHER_PRODUCT){
+        } else if (id == R.id.other) {
+            if (CURRENT_FRAGMENT != FRAGMENT_OTHER_PRODUCT) {
                 replaceFrament(new OtherProductFragment());
                 CURRENT_FRAGMENT = FRAGMENT_OTHER_PRODUCT;
             }
             Toast.makeText(this, "Other Clicked", Toast.LENGTH_SHORT).show();
-        }else if(id == R.id.cart) {
-            if (CURRENT_FRAGMENT != FRAGMENT_CART){
+        } else if (id == R.id.cart) {
+            if (CURRENT_FRAGMENT != FRAGMENT_CART) {
                 replaceFrament(new CartFragment());
                 CURRENT_FRAGMENT = FRAGMENT_CART;
             }
-        }
-        else if(id == R.id.profile){
-            if (CURRENT_FRAGMENT != FRAGMENT_PROFILE){
+        } else if (id == R.id.profile) {
+            if (CURRENT_FRAGMENT != FRAGMENT_PROFILE) {
                 replaceFrament(new ProfileFragment());
                 CURRENT_FRAGMENT = FRAGMENT_PROFILE;
             }
-        }else if(id == R.id.history){
+        } else if (id == R.id.history) {
             Intent intent = new Intent(this, Login.class);
-            if (CURRENT_FRAGMENT != FRAGMENT_ODER_HISTORY){
+            if (CURRENT_FRAGMENT != FRAGMENT_ODER_HISTORY) {
                 replaceFrament(new OrderHistoryFragment());
                 CURRENT_FRAGMENT = FRAGMENT_ODER_HISTORY;
             }
-        }
-        else if(id == R.id.logout){
+        } else if (id == R.id.logout) {
             Intent intent = new Intent(this, Login.class);
             (this).startActivity(intent);
         }
@@ -184,16 +179,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override // fix loi thoat app khi mo navigation drawer
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else{
+        } else {
             super.onBackPressed();
         }
     }
 
-    private void replaceFrament(Fragment fragment){
+    private void replaceFrament(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame,fragment);
+        fragmentTransaction.replace(R.id.content_frame, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

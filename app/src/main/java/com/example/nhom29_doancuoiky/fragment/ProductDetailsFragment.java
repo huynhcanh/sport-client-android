@@ -108,7 +108,6 @@ public class ProductDetailsFragment extends Fragment {
                             });
 
 
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -202,7 +201,6 @@ public class ProductDetailsFragment extends Fragment {
         });
 
 
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -223,7 +221,7 @@ public class ProductDetailsFragment extends Fragment {
                         StringBuilder url = new StringBuilder(ApiConstant.URL_API)
                                 .append("cart?")
                                 .append("productId=" + productApiResponse.getId().toString())
-                                .append("&sizeCode="+ ((rad_tre_em.isChecked()) ? "tre-em":"nguoi-lon")) //chỉnh lại radio (sizecode=["tre-em","nguoi-lon"];
+                                .append("&sizeCode=" + ((rad_tre_em.isChecked()) ? "tre-em" : "nguoi-lon")) //chỉnh lại radio (sizecode=["tre-em","nguoi-lon"];
                                 .append("&userId=" + ApiConstant.userLog.getId().toString())
                                 .append("&quantity=" + amount.getText());
                         System.out.println(url.toString());

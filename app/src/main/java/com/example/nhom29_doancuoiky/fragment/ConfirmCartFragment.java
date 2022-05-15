@@ -1,18 +1,12 @@
 package com.example.nhom29_doancuoiky.fragment;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,17 +18,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
 import com.example.nhom29_doancuoiky.constant.ApiConstant;
 import com.example.nhom29_doancuoiky.converter.CartConverter;
-import com.example.nhom29_doancuoiky.converter.UserConverter;
-import com.example.nhom29_doancuoiky.model.Cart;
 import com.example.nhom29_doancuoiky.response.CartApiResponse;
-import com.example.nhom29_doancuoiky.response.UserApiResponse;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,14 +69,6 @@ public class ConfirmCartFragment extends Fragment {
                     }
                 });
         requestQueue.add(jsonArrayRequest);
-
-
-//        listitem.add(new Cart("img","sp1",1,"M",1010));
-//        listitem.add(new Cart("img","sp2",1,"L",1002));
-//        listitem.add(new Cart("img","sp3",1,"L",1040));
-//        listitem.add(new Cart("img","sp4",1,"XL",1070));
-//        listitem.add(new Cart("img","sp5",1,"M",1050));
-//        listitem.add(new Cart("img","sp6",1,"XL",1006));
     }
 
     public void totalprices(List<CartApiResponse> listitem) {
@@ -151,7 +131,7 @@ public class ConfirmCartFragment extends Fragment {
                             StringBuilder url = new StringBuilder(ApiConstant.URL_API)
                                     .append("order?")
                                     .append("userId=" + ApiConstant.userLog.getId().toString())
-                                    .append("&adddress="+ ADDRES.getText().toString());
+                                    .append("&adddress=" + ADDRES.getText().toString());
 
                             System.out.println(url.toString());
                             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url.toString(), null,
@@ -182,7 +162,6 @@ public class ConfirmCartFragment extends Fragment {
 
             }
         });
-
 
         return view;
     }

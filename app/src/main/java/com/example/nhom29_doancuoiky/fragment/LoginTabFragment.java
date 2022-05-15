@@ -87,17 +87,17 @@ public class LoginTabFragment extends Fragment {
                     JSONObject jsonObject = new JSONObject(params);
 
                     RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                    String url = ApiConstant.URL_API +"user/login";
+                    String url = ApiConstant.URL_API + "user/login";
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
                             //api call success
                             new Response.Listener<JSONObject>() {
                                 @Override
-                                    public void onResponse(JSONObject response) {
-                                        UserApiResponse userApiResponse = new UserConverter().toApiResponse(response);
-                                        ApiConstant.userLog = userApiResponse;
-                                        Toast.makeText(getContext(), "Welcome "+ userApiResponse.getName(), Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getContext(), Home.class);
-                                        startActivity(intent);
+                                public void onResponse(JSONObject response) {
+                                    UserApiResponse userApiResponse = new UserConverter().toApiResponse(response);
+                                    ApiConstant.userLog = userApiResponse;
+                                    Toast.makeText(getContext(), "Welcome " + userApiResponse.getName(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getContext(), Home.class);
+                                    startActivity(intent);
                                 }
                             },
                             //api call fail

@@ -3,7 +3,6 @@ package com.example.nhom29_doancuoiky.fragment;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,13 +30,10 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
 import com.example.nhom29_doancuoiky.constant.ApiConstant;
 import com.example.nhom29_doancuoiky.converter.CartConverter;
-import com.example.nhom29_doancuoiky.converter.UserConverter;
 import com.example.nhom29_doancuoiky.response.CartApiResponse;
-import com.example.nhom29_doancuoiky.response.UserApiResponse;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -46,7 +42,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -83,17 +78,17 @@ public class CartFragment extends Fragment {
         return view;
     }
 
-    private void updatedata(Long idCart, String amount, String size, Long idProduct ) {
+    private void updatedata(Long idCart, String amount, String size, Long idProduct) {
 
-        Map<String,String> params = new HashMap<>();
-        params.put("id",idCart.toString());
-        params.put("quantity",amount);
-        params.put("sizeCode",size);
-        params.put("productId",idProduct.toString());
+        Map<String, String> params = new HashMap<>();
+        params.put("id", idCart.toString());
+        params.put("quantity", amount);
+        params.put("sizeCode", size);
+        params.put("productId", idProduct.toString());
         JSONObject jsonObject = new JSONObject(params);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        String url = ApiConstant.URL_API +"cart";
+        String url = ApiConstant.URL_API + "cart";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,
                 //api call success
                 new Response.Listener<JSONObject>() {
@@ -173,7 +168,7 @@ public class CartFragment extends Fragment {
                                             //call api delete cart
 
                                             RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                                            String url = ApiConstant.URL_API +"cart/" + list.get(i).getId();
+                                            String url = ApiConstant.URL_API + "cart/" + list.get(i).getId();
 
                                             StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url,
                                                     new Response.Listener<String>() {
@@ -216,11 +211,13 @@ public class CartFragment extends Fragment {
                                         public void onClick(View view) {
                                             Integer check = grp.getCheckedRadioButtonId();
                                             //update cart
-                                            if (rad_tre_em.isChecked()){
-                                                updatedata(list.get(i).getId(), (String) amount.getText(), "tre-em", list.get(i).getProductId());}
+                                            if (rad_tre_em.isChecked()) {
+                                                updatedata(list.get(i).getId(), (String) amount.getText(), "tre-em", list.get(i).getProductId());
+                                            }
 
-                                            if (rad_nguoi_lon.isChecked()){
-                                                updatedata(list.get(i).getId(), (String) amount.getText(), "nguoi-lon",list.get(i).getProductId());}
+                                            if (rad_nguoi_lon.isChecked()) {
+                                                updatedata(list.get(i).getId(), (String) amount.getText(), "nguoi-lon", list.get(i).getProductId());
+                                            }
 
                                             dialog.cancel();
 
@@ -293,8 +290,7 @@ public class CartFragment extends Fragment {
         cart.setAdapter(adapter);
     }
 
-    public void totalprices(ArrayList<CartApiResponse> list)
-    {
+    public void totalprices(ArrayList<CartApiResponse> list) {
         sum = 0F;
         for (int i = 0; i < list.size(); i++) {
             sum += list.get(i).getTotalMoney();

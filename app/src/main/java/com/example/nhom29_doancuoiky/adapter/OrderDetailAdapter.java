@@ -1,24 +1,19 @@
 package com.example.nhom29_doancuoiky.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
-import com.example.nhom29_doancuoiky.model.OrderDetail;
 import com.example.nhom29_doancuoiky.response.OrderDetailApiResponse;
 import com.squareup.picasso.Picasso;
-
 
 import java.util.ArrayList;
 
@@ -29,7 +24,7 @@ public class OrderDetailAdapter extends ArrayAdapter<OrderDetailApiResponse> {
     OrderDetailApiResponse orderDetail;
 
     ImageView ivImage;
-    TextView tvName,tvAmount,tvPrice;
+    TextView tvName, tvAmount, tvPrice;
 
     public OrderDetailAdapter(@NonNull Context context, int resource, @NonNull ArrayList<OrderDetailApiResponse> OrderDetailModels) {
         super(context, resource, OrderDetailModels);
@@ -46,7 +41,7 @@ public class OrderDetailAdapter extends ArrayAdapter<OrderDetailApiResponse> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(resource,null);
+        convertView = LayoutInflater.from(context).inflate(resource, null);
 
         ivImage = convertView.findViewById(R.id.ivImage);
         tvName = convertView.findViewById(R.id.tvName);
