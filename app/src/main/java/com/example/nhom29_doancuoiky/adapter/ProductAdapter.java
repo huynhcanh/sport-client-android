@@ -110,14 +110,7 @@ public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
         fbAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                productSize = new ProductSize(1,product.getId(),1,1);
-//                Intent intent = new Intent(context, CartFragment.class);
-//                intent.putExtra("product_add_to_cart",productSize);
-//                context.startActivity(intent);
-//                Toast.makeText(context, "Product added to cart", Toast.LENGTH_SHORT).show();
-
                 // gui du lieu sang cart o day
-
                 RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                 String url = ApiConstant.URL_API + "/product?id=" + productModels.get(position).getId();
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -131,7 +124,7 @@ public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
                                 StringBuilder url = new StringBuilder(ApiConstant.URL_API)
                                         .append("cart?")
                                         .append("productId=" + productApiResponse.getId().toString())
-                                        .append("&sizeCode=nguoi-lon")
+                                        .append("&sizeCode=nguoi-lon") // auto nguoi lon
                                         .append("&userId=" + ApiConstant.userLog.getId().toString())
                                         .append("&quantity=1");
                                 System.out.println(url.toString());

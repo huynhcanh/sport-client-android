@@ -89,6 +89,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         else if(fragmentID == 2){
             replaceFrament(new OrderHistoryFragment());
             CURRENT_FRAGMENT = FRAGMENT_ODER_HISTORY;
+
+        }else if(fragmentID == 3){
+            replaceFrament(new OrderDetailFragment());
+            CURRENT_FRAGMENT = FRAGMENT_ODER_DETAIL;
         }
     }
 

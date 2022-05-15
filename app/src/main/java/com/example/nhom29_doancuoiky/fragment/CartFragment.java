@@ -226,6 +226,7 @@ public class CartFragment extends Fragment {
 
                                         }
                                     });
+                                    //cancel
                                     bnt3.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {

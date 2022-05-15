@@ -16,21 +16,22 @@ import androidx.annotation.Nullable;
 import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
 import com.example.nhom29_doancuoiky.model.OrderDetail;
+import com.example.nhom29_doancuoiky.response.OrderDetailApiResponse;
 import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
 
-public class OrderDetailAdapter extends ArrayAdapter<OrderDetail> {
+public class OrderDetailAdapter extends ArrayAdapter<OrderDetailApiResponse> {
     Context context;
     int resource;
-    ArrayList<OrderDetail> OrderDetailModels;
-    OrderDetail orderDetail;
+    ArrayList<OrderDetailApiResponse> OrderDetailModels;
+    OrderDetailApiResponse orderDetail;
 
     ImageView ivImage;
     TextView tvName,tvAmount,tvPrice;
 
-    public OrderDetailAdapter(@NonNull Context context, int resource, @NonNull ArrayList<OrderDetail> OrderDetailModels) {
+    public OrderDetailAdapter(@NonNull Context context, int resource, @NonNull ArrayList<OrderDetailApiResponse> OrderDetailModels) {
         super(context, resource, OrderDetailModels);
         this.context = context;
         this.resource = resource;
@@ -53,10 +54,10 @@ public class OrderDetailAdapter extends ArrayAdapter<OrderDetail> {
         tvPrice = convertView.findViewById(R.id.tvPrice);
 
         orderDetail = OrderDetailModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvName.setText("Name:        " + orderDetail.getName());
-        tvAmount.setText("Amount:    " + orderDetail.getAmount());
-        tvPrice.setText("Price:         " + orderDetail.getPrice() + "$");
-        Picasso.get().load(orderDetail.getImage()).into(ivImage);
+        tvName.setText("Name:        " + orderDetail.getNameProd());
+        tvAmount.setText("Amount:    " + orderDetail.getQuantity());
+        tvPrice.setText("Price:         " + orderDetail.getTotalMoney() + "$");
+        Picasso.get().load(orderDetail.getLinkImgProd()).into(ivImage);
 
 //        setEvent();
 

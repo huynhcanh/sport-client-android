@@ -16,20 +16,21 @@ import androidx.annotation.Nullable;
 import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
 import com.example.nhom29_doancuoiky.model.OrderHistory;
+import com.example.nhom29_doancuoiky.response.OrderApiResponse;
 
 import java.util.ArrayList;
 
-public class OrderHistoryAdapter extends ArrayAdapter<OrderHistory> {
+public class OrderHistoryAdapter extends ArrayAdapter<OrderApiResponse> {
     Context context;
     int resource;
-    ArrayList<OrderHistory> OrderHistoryModels;
-    OrderHistory orderHistory;
+    ArrayList<OrderApiResponse> OrderHistoryModels;
+    OrderApiResponse orderHistory;
 
     ImageView ivOrderHistory;
     TextView tvOrderDate,tvTotalMoney,tvStatus;
 
 
-    public OrderHistoryAdapter(@NonNull Context context, int resource, @NonNull ArrayList<OrderHistory> OrderHistoryModels) {
+    public OrderHistoryAdapter(@NonNull Context context, int resource, @NonNull ArrayList<OrderApiResponse> OrderHistoryModels) {
         super(context, resource, OrderHistoryModels);
         this.context = context;
         this.resource = resource;
@@ -52,9 +53,9 @@ public class OrderHistoryAdapter extends ArrayAdapter<OrderHistory> {
         ivOrderHistory = convertView.findViewById(R.id.ivOrderHistory);
 
         orderHistory = OrderHistoryModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvOrderDate.setText(orderHistory.getOrderDate());
+        tvOrderDate.setText(orderHistory.getDateCreate());
         tvTotalMoney.setText(Float.toString(orderHistory.getTotalMoney()) + "$");
-        tvStatus.setText(orderHistory.getStatus());
+        tvStatus.setText("Đã xác nhận");
 
         return convertView;
     }
