@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nhom29_DoAnCuoiKy">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDJYCCyjrJBL1Gw12sDAjFPJ4q49jgG4zo" />
+
         <activity
             android:name=".Home"
             android:exported="false"/>
