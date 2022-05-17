@@ -226,7 +226,7 @@ public class ConfirmCartFragment extends Fragment implements OnMapReadyCallback 
 
         map = googleMap;
         LatLng Hocvien = new LatLng(x,y);
-        map.addMarker(new MarkerOptions().position(Hocvien).title("Bun Thai"));
+        map.addMarker(new MarkerOptions().position(Hocvien).title(""));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(Hocvien,16));
     }
 
