@@ -2,6 +2,7 @@ package com.example.nhom29_doancuoiky.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
 
     View convertView;
     ImageView ivImage;
-    TextView tvName, tvPrice;
+    TextView tvName, tvPrice, tvDiscount, tvSalePrice;
     FloatingActionButton fbAddToCart;
     ProductApiResponse productApiResponse;
     ProductSize productSize;
@@ -64,8 +65,11 @@ public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
         setControl(convertView);
         productApiResponse = productModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
         tvName.setText(productApiResponse.getName());
-        tvPrice.setText(Float.toString(productApiResponse.getUnitPrice()) + "$");
-        Picasso.get().load(productApiResponse.getImages().get(0)).into(ivImage);
+        tvPrice.setText(android.text.Html.fromHtml("<strike>"+productApiResponse.getUnitPrice() + "$" +"</strike>"));
+        //tvPrice.setText(Float.toString(productApiResponse.getUnitPrice()) + "$");
+        tvDiscount.setText("Sale: "+Float.toString(productApiResponse.getDiscount()) + "%");
+        tvSalePrice.setText(Float.toString(productApiResponse.getSalePrice()) + "$");
+        Picasso.get().load(ApiConstant.URL_IMG +"product/"+ productApiResponse.getImages().get(0)).into(ivImage);
         setEvent(position);
         return convertView;
     }
@@ -74,6 +78,8 @@ public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
         ivImage = convertView.findViewById(R.id.ivProductImage);
         tvName = convertView.findViewById(R.id.tvProductName);
         tvPrice = convertView.findViewById(R.id.tvProductPrice);
+        tvDiscount = convertView.findViewById(R.id.tvDiscount);
+        tvSalePrice = convertView.findViewById(R.id.tvSalePrice);
         fbAddToCart = convertView.findViewById(R.id.fbAddToCart);
     }
 

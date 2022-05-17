@@ -7,7 +7,7 @@
         android:id="@+id/home"
         android:icon="@drawable/home_icon"/>
 
-    <item android:title="Category">
+    <!--<item android:title="Category">
         <menu>
             <item
                 android:title = "Shirts"
@@ -29,7 +29,7 @@
                 android:id="@+id/other"
                 android:icon="@drawable/other"/>
         </menu>
-    </item>
+    </item>-->
 
     <item android:title="Profile">
         <menu>

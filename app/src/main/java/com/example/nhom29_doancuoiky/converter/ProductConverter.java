@@ -18,6 +18,7 @@ public class ProductConverter {
             productApiResponse.setName(jsonObject.getString("name"));
             productApiResponse.setDiscount((float) jsonObject.getLong("discount"));
             productApiResponse.setUnitPrice((float) jsonObject.getLong("unitPrice"));
+            productApiResponse.setSalePrice((float) jsonObject.getLong("salePrice"));
             productApiResponse.setCategoryName(jsonObject.getJSONObject("category").getString("value"));
             productApiResponse.setDescription(jsonObject.getString("description"));
             List<String> images = new ArrayList<>();

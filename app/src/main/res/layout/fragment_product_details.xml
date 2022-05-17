@@ -12,7 +12,8 @@
         android:id="@+id/imgview"
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:layout_margin="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
         android:background="#FFFFBB33"
         android:scaleType="fitXY"/>
 
@@ -20,7 +21,7 @@
         android:id="@+id/nameprd"
         android:layout_width="145dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="200sp"
+        android:layout_marginLeft="10sp"
         android:layout_marginTop="10dp"
         android:text="Name product"
         android:textSize="20sp"
@@ -30,7 +31,7 @@
         android:id="@+id/priceprd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:layout_marginLeft="200dp"
         android:text="PRICE:"
@@ -40,7 +41,7 @@
         android:id="@+id/makeinprd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="40dp"
         android:textSize="20sp"
         android:layout_marginLeft="200dp"
         android:text="Descirp:"
@@ -93,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:checked="true"
             android:text="Tre em"></RadioButton>
 
         <RadioButton
@@ -118,9 +120,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textAlignment="center"
         android:text="SAME PRODUCT"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:padding="10sp"
         android:layout_marginTop="310dp"></TextView>
@@ -128,7 +131,7 @@
     <ListView
         android:id="@+id/same"
         android:layout_width="match_parent"
-        android:layout_height="275dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="370dp"></ListView>
 
 

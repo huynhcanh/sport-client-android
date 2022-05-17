@@ -149,7 +149,7 @@ public class CartFragment extends Fragment {
 
                                     textView.setText(list.get(i).getNameProd());
                                     amount.setText(Integer.toString(list.get(i).getQuantity()));
-                                    Picasso.get().load(list.get(i).getLinkImgProd()).into(imageView);
+                                    Picasso.get().load(ApiConstant.URL_IMG +"product/"+list.get(i).getLinkImgProd()).into(imageView);
                                     String a = list.get(i).getSizeCode();
                                     switch (list.get(i).getSizeCode()) {
                                         case "tre-em": {
@@ -279,7 +279,7 @@ public class CartFragment extends Fragment {
 
                 CartApiResponse s = list.get(position);
                 System.out.println(s.getLinkImgProd());
-                Picasso.get().load(s.getLinkImgProd()).into(img);
+                Picasso.get().load(ApiConstant.URL_IMG + "product/"+s.getLinkImgProd()).into(img);
                 name.setText(s.getNameProd());
                 amount.setText("Amount: " + s.getQuantity());
                 price.setText("Price: " + s.getTotalMoney() + " $");

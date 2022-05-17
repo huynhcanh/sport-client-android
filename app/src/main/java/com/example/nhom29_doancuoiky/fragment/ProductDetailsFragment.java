@@ -100,7 +100,7 @@ public class ProductDetailsFragment extends Fragment {
                                     nameprd.setText(same_listProduct.get(i).getName());
                                     priceprd.setText("PRICE: " + same_listProduct.get(i).getUnitPrice() + "$");
                                     makeinprd.setText(same_listProduct.get(i).getDescription());
-                                    Picasso.get().load(same_listProduct.get(i).getImages().get(0)).into(imgview);
+                                    Picasso.get().load(ApiConstant.URL_IMG +"product/"+same_listProduct.get(i).getImages().get(0)).into(imgview);
                                     same_listProduct.clear();
                                     loadsamelist();
 
@@ -134,7 +134,7 @@ public class ProductDetailsFragment extends Fragment {
                 ImageView img = convertView.findViewById(R.id.prd_img);
 
                 ProductApiResponse s = same_listProduct.get(position);
-                Picasso.get().load(s.getImages().get(0)).into(img);
+                Picasso.get().load(ApiConstant.URL_IMG +"product/"+s.getImages().get(0)).into(img);
                 name.setText(s.getName());
                 price.setText("Price: " + String.valueOf(s.getUnitPrice()) + " $");
                 return convertView;
@@ -181,7 +181,7 @@ public class ProductDetailsFragment extends Fragment {
         priceprd.setText("PRICE: " + productApiResponse.getUnitPrice() + "$");
         makeinprd.setText(productApiResponse.getDescription());
         amount.setText("1");
-        Picasso.get().load(productApiResponse.getImages().get(0)).into(imgview);
+        Picasso.get().load(ApiConstant.URL_IMG +"product/"+productApiResponse.getImages().get(0)).into(imgview);
 
 
         btnAdd.setOnClickListener(new View.OnClickListener() {

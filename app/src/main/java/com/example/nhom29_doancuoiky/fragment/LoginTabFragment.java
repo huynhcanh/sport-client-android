@@ -45,9 +45,6 @@ public class LoginTabFragment extends Fragment {
         setAppearance();
         setEvent();
 
-        txtEmail.setText("bingbang004@gmail.com");
-        txtPass.setText("123");
-
         return root;
     }
 

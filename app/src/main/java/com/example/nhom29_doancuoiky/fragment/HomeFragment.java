@@ -29,7 +29,6 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     View view;
     GridView gvDanhSachProduct;
-    ArrayList<ProductApiResponse> listProduct;
     ArrayList<ProductApiResponse> listProductApiResponse = new ArrayList<>();
 
     public HomeFragment() {

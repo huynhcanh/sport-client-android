@@ -9,9 +9,18 @@ public class ProductApiResponse implements Serializable {
     private String name;
     private List<String> images;
     private Float discount;
+    private Float salePrice;
     private Float unitPrice;
     private String categoryName;
     private String description;
+
+    public Float getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(Float salePrice) {
+        this.salePrice = salePrice;
+    }
 
     public Long getId() {
         return id;
