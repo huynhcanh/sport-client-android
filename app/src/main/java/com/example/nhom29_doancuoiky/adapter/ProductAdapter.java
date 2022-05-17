@@ -67,7 +67,7 @@ public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
         tvName.setText(productApiResponse.getName());
         tvPrice.setText(android.text.Html.fromHtml("<strike>"+productApiResponse.getUnitPrice() + "$" +"</strike>"));
         //tvPrice.setText(Float.toString(productApiResponse.getUnitPrice()) + "$");
-        tvDiscount.setText("Sale"+Float.toString(productApiResponse.getDiscount()) + "%");
+        tvDiscount.setText("Sale: "+Float.toString(productApiResponse.getDiscount()) + "%");
         tvSalePrice.setText(Float.toString(productApiResponse.getSalePrice()) + "$");
         Picasso.get().load(productApiResponse.getImages().get(0)).into(ivImage);
         setEvent(position);
