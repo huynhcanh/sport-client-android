@@ -40,7 +40,7 @@ public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
 
     View convertView;
     ImageView ivImage;
-    TextView tvName, tvPrice;
+    TextView tvName, tvPrice, tvDiscount, tvSalePrice;
     FloatingActionButton fbAddToCart;
     ProductApiResponse productApiResponse;
     ProductSize productSize;
@@ -65,6 +65,8 @@ public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
         productApiResponse = productModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
         tvName.setText(productApiResponse.getName());
         tvPrice.setText(Float.toString(productApiResponse.getUnitPrice()) + "$");
+        tvDiscount.setText("Sale"+Float.toString(productApiResponse.getDiscount()) + "%");
+        //tvSalePrice.setText(Float.toString(productApiResponse.getSalePrice()) + "$");
         Picasso.get().load(productApiResponse.getImages().get(0)).into(ivImage);
         setEvent(position);
         return convertView;
@@ -74,6 +76,8 @@ public class ProductAdapter extends ArrayAdapter<ProductApiResponse> {
         ivImage = convertView.findViewById(R.id.ivProductImage);
         tvName = convertView.findViewById(R.id.tvProductName);
         tvPrice = convertView.findViewById(R.id.tvProductPrice);
+        tvDiscount = convertView.findViewById(R.id.tvDiscount);
+        tvSalePrice = convertView.findViewById(R.id.tvSalePrice);
         fbAddToCart = convertView.findViewById(R.id.fbAddToCart);
     }
 

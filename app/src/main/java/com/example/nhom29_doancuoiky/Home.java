@@ -102,9 +102,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     @Override // bat su kien select cho toolbar
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.search) {
-            Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.home) {
+//        if (id == R.id.search) {
+//            Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show();
+//        }
+         if (id == R.id.home) {
             if (CURRENT_FRAGMENT != FRAGMENT_HOME) {
                 replaceFrament(new HomeFragment());
                 CURRENT_FRAGMENT = FRAGMENT_HOME;
@@ -127,32 +128,35 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 replaceFrament(new HomeFragment());
                 CURRENT_FRAGMENT = FRAGMENT_HOME;
             }
-        } else if (id == R.id.shirt) {
-            if (CURRENT_FRAGMENT != FRAGMENT_SHIRT) {
-                replaceFrament(new ShirtFragment());
-                CURRENT_FRAGMENT = FRAGMENT_SHIRT;
-            }
-            Toast.makeText(this, "Category Shirt", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.pant) {
-            if (CURRENT_FRAGMENT != FRAGMENT_PANT) {
-                replaceFrament(new PantFragment());
-                CURRENT_FRAGMENT = FRAGMENT_PANT;
-            }
-            Toast.makeText(this, "Pant Clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.shoe) {
-            if (CURRENT_FRAGMENT != FRAGMENT_SHOE) {
-                replaceFrament(new ShoeFragment());
-                CURRENT_FRAGMENT = FRAGMENT_SHOE;
-            }
-            Toast.makeText(this, "Shoe Clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.other) {
-            if (CURRENT_FRAGMENT != FRAGMENT_OTHER_PRODUCT) {
-                replaceFrament(new OtherProductFragment());
-                CURRENT_FRAGMENT = FRAGMENT_OTHER_PRODUCT;
-            }
-            Toast.makeText(this, "Other Clicked", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.cart) {
+        }
+//        else if (id == R.id.shirt) {
+//            if (CURRENT_FRAGMENT != FRAGMENT_SHIRT) {
+//                replaceFrament(new ShirtFragment());
+//                CURRENT_FRAGMENT = FRAGMENT_SHIRT;
+//            }
+//            Toast.makeText(this, "Category Shirt", Toast.LENGTH_SHORT).show();
+//
+//        } else if (id == R.id.pant) {
+//            if (CURRENT_FRAGMENT != FRAGMENT_PANT) {
+//                replaceFrament(new PantFragment());
+//                CURRENT_FRAGMENT = FRAGMENT_PANT;
+//            }
+//            Toast.makeText(this, "Pant Clicked", Toast.LENGTH_SHORT).show();
+//        } else if (id == R.id.shoe) {
+//            if (CURRENT_FRAGMENT != FRAGMENT_SHOE) {
+//                replaceFrament(new ShoeFragment());
+//                CURRENT_FRAGMENT = FRAGMENT_SHOE;
+//            }
+//            Toast.makeText(this, "Shoe Clicked", Toast.LENGTH_SHORT).show();
+//        }
+//        else if (id == R.id.other) {
+//            if (CURRENT_FRAGMENT != FRAGMENT_OTHER_PRODUCT) {
+//                replaceFrament(new OtherProductFragment());
+//                CURRENT_FRAGMENT = FRAGMENT_OTHER_PRODUCT;
+//            }
+//            Toast.makeText(this, "Other Clicked", Toast.LENGTH_SHORT).show();
+//        }
+        else if (id == R.id.cart) {
             if (CURRENT_FRAGMENT != FRAGMENT_CART) {
                 replaceFrament(new CartFragment());
                 CURRENT_FRAGMENT = FRAGMENT_CART;
