@@ -5,12 +5,12 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     Integer id;
-    String email,phone,name,password;
+    String email, phone, name, password;
 
     public User() {
     }
 
-    public User(Integer id,String email, String phone, String name, String password) {
+    public User(Integer id, String email, String phone, String name, String password) {
         this.id = id;
         this.email = email;
         this.phone = phone;

@@ -88,7 +88,7 @@
         android:orientation="vertical">
 
         <RadioButton
-            android:id="@+id/sizem"
+            android:id="@+id/sizete"
             android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,6 +96,7 @@
             android:text="Tre em"></RadioButton>
 
         <RadioButton
+            android:id="@+id/sizenl"
             android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

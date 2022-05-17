@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,7 +23,6 @@ import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
 import com.example.nhom29_doancuoiky.constant.ApiConstant;
 import com.example.nhom29_doancuoiky.converter.UserConverter;
-import com.example.nhom29_doancuoiky.model.User;
 import com.example.nhom29_doancuoiky.response.UserApiResponse;
 
 import org.json.JSONObject;
@@ -33,10 +31,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileFragment extends Fragment {
-    EditText txtEmail,txtPhone,txtName,txtPassword;
+    EditText txtEmail, txtPhone, txtName, txtPassword;
     Button btnSave, btnCancel;
     ViewGroup root;
     UserApiResponse userApiResponse;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,22 +53,23 @@ public class ProfileFragment extends Fragment {
         txtPhone.setText(ApiConstant.userLog.getPhone());
         txtName.setText(ApiConstant.userLog.getName());
     }
+
     private void setEvent() {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dataCheck()){
-                    Map<String,String> params = new HashMap<>();
+                if (dataCheck()) {
+                    Map<String, String> params = new HashMap<>();
                     params.put("id", ApiConstant.userLog.getId().toString());
-                    params.put("email",txtEmail.getText().toString());
-                    params.put("password",txtPassword.getText().toString());
-                    params.put("name",txtName.getText().toString());
-                    params.put("phone",txtPhone.getText().toString());
+                    params.put("email", txtEmail.getText().toString());
+                    params.put("password", txtPassword.getText().toString());
+                    params.put("name", txtName.getText().toString());
+                    params.put("phone", txtPhone.getText().toString());
 
                     JSONObject jsonObject = new JSONObject(params);
 
                     RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                    String url = ApiConstant.URL_API +"user";
+                    String url = ApiConstant.URL_API + "user";
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,
                             //api call success
                             new Response.Listener<JSONObject>() {
@@ -102,6 +102,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+
     private void setControl() {
         txtEmail = root.findViewById(R.id.txtEmail);
         txtPhone = root.findViewById(R.id.txtPhone);
@@ -110,14 +111,15 @@ public class ProfileFragment extends Fragment {
         btnSave = root.findViewById(R.id.btnSave);
         btnCancel = root.findViewById(R.id.btnCancel);
     }
+
     private boolean dataCheck() {
-        if(txtEmail.getText().toString().trim().equals("")
+        if (txtEmail.getText().toString().trim().equals("")
                 || txtName.getText().toString().trim().equals("")
                 || txtPhone.getText().toString().trim().equals("")
-                || txtPassword.getText().toString().trim().equals("")){
+                || txtPassword.getText().toString().trim().equals("")) {
             Toast.makeText(getContext(), "Please enter all info", Toast.LENGTH_SHORT).show();
             return false;
-        } else{
+        } else {
             return true;
         }
     }

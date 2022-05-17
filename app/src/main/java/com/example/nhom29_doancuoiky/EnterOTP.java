@@ -54,13 +54,13 @@ public class EnterOTP extends AppCompatActivity {
         });
     }
 
-    private void getDataIntent(){
+    private void getDataIntent() {
         mPhoneNumber = getIntent().getStringExtra("phone_number");
         mVerificationID = getIntent().getStringExtra("verification_id");
     }
 
     private void startSendOTPCode(String otp) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationID,otp);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationID, otp);
         signInWithPhoneAuthCredential(credential);
     }
 
@@ -73,7 +73,7 @@ public class EnterOTP extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.e(TAG, "signInWithCredential:success");
 
-                            Intent intent = new Intent(EnterOTP.this,Home.class);
+                            Intent intent = new Intent(EnterOTP.this, Home.class);
                             startActivity(intent);
                             Toast.makeText(EnterOTP.this, "OTP verification success", Toast.LENGTH_SHORT).show();
 

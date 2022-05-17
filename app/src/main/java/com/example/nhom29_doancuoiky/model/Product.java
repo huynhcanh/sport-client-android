@@ -3,9 +3,9 @@ package com.example.nhom29_doancuoiky.model;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    int id,viewcount,category_id;
-    float discount,price;
-    String description,name,image;
+    int id, viewcount, category_id;
+    float discount, price;
+    String description, name, image;
 
     public Product() {
     }

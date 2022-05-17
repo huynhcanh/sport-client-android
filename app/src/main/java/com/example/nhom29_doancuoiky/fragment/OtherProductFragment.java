@@ -9,8 +9,6 @@ import android.widget.GridView;
 import androidx.fragment.app.Fragment;
 
 import com.example.nhom29_doancuoiky.R;
-import com.example.nhom29_doancuoiky.adapter.ProductAdapter;
-import com.example.nhom29_doancuoiky.model.Product;
 import com.example.nhom29_doancuoiky.response.ProductApiResponse;
 
 import java.util.ArrayList;
@@ -52,7 +50,7 @@ public class OtherProductFragment extends Fragment {
 //        listProduct.add(new Product(6,6,4,1,30,"gang tay","boxing","https://vothuattayson.vn/wp-content/uploads/gang-tay-boxing-title.jpg"));
     }
 
-    private void loadData(){
+    private void loadData() {
         addData();
 //        listOtherProduct = new ArrayList<>();
 //        for (Product str : listProduct) {

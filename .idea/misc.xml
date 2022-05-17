@@ -38,11 +38,9 @@
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/drawable/circle_btn.xml" value="0.1" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/drawable/edit_text_custom.xml" value="0.1" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/drawable/home_icon.xml" value="0.1" />
-        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/drawable/icon_history.xml" value="0.15" />
-        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/drawable/pad.xml" value="0.1" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/activity_enter_email.xml" value="0.25" />
-        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/activity_enter_otp.xml" value="0.264" />
-        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/activity_forgot_password.xml" value="0.264" />
+        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/activity_enter_otp.xml" value="0.25" />
+        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/activity_forgot_password.xml" value="0.11639492753623189" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/activity_home.xml" value="0.12158054711246201" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/book_success.xml" value="0.1" />
@@ -58,14 +56,10 @@
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/fragment_emtycart.xml" value="0.2210144927536232" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/fragment_order_detail.xml" value="0.2210144927536232" />
-        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/fragment_order_history.xml" value="0.18802083333333333" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/fragment_product_details.xml" value="0.19322916666666667" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/fragment_profile.xml" value="0.12158054711246201" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/fragment_viewpager.xml" value="0.11639492753623189" />
-        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/item_order_detail.xml" value="0.25" />
-        <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/item_order_history.xml" value="0.18802083333333333" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/item_product_layout.xml" value="0.25" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/item_same_product.xml" value="0.2210144927536232" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/no_address_dialog.xml" value="0.2210144927536232" />
@@ -73,6 +67,7 @@
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/layout/same_product.xml" value="0.19322916666666667" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/menu/menu.xml" value="0.23796296296296296" />
         <entry key="..\:/Nhom29_DoAnCuoiKy/app/src/main/res/menu/nav_menu.xml" value="0.23796296296296296" />
+
       </map>
     </option>
   </component>

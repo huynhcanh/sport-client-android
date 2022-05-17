@@ -1,13 +1,12 @@
 package com.example.nhom29_doancuoiky.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.nhom29_doancuoiky.R;
 
@@ -23,9 +22,11 @@ public class EmptyCartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Button cf_btn;
+
     public EmptyCartFragment() {
         // Required empty public constructor
     }
+
     // TODO: Rename and change types and number of parameters
     public static EmptyCartFragment newInstance(String param1, String param2) {
         EmptyCartFragment fragment = new EmptyCartFragment();
@@ -49,13 +50,13 @@ public class EmptyCartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_empty_cart, container, false);
-        cf_btn= view.findViewById(R.id.button);
+        View view = inflater.inflate(R.layout.fragment_empty_cart, container, false);
+        cf_btn = view.findViewById(R.id.button);
         cf_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cf_btn.setText("click");
-                Fragment fragment2= new HomeFragment();
+                Fragment fragment2 = new HomeFragment();
                 getFragmentManager().beginTransaction().
                         replace(R.id.content_frame, fragment2).
                         addToBackStack("frags").commit();

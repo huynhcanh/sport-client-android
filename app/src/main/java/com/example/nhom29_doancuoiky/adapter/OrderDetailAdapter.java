@@ -1,36 +1,32 @@
 package com.example.nhom29_doancuoiky.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.nhom29_doancuoiky.Home;
 import com.example.nhom29_doancuoiky.R;
-import com.example.nhom29_doancuoiky.model.OrderDetail;
+import com.example.nhom29_doancuoiky.response.OrderDetailApiResponse;
 import com.squareup.picasso.Picasso;
-
 
 import java.util.ArrayList;
 
-public class OrderDetailAdapter extends ArrayAdapter<OrderDetail> {
+public class OrderDetailAdapter extends ArrayAdapter<OrderDetailApiResponse> {
     Context context;
     int resource;
-    ArrayList<OrderDetail> OrderDetailModels;
-    OrderDetail orderDetail;
+    ArrayList<OrderDetailApiResponse> OrderDetailModels;
+    OrderDetailApiResponse orderDetail;
 
     ImageView ivImage;
-    TextView tvName,tvAmount,tvPrice;
+    TextView tvName, tvAmount, tvPrice;
 
-    public OrderDetailAdapter(@NonNull Context context, int resource, @NonNull ArrayList<OrderDetail> OrderDetailModels) {
+    public OrderDetailAdapter(@NonNull Context context, int resource, @NonNull ArrayList<OrderDetailApiResponse> OrderDetailModels) {
         super(context, resource, OrderDetailModels);
         this.context = context;
         this.resource = resource;
@@ -45,7 +41,7 @@ public class OrderDetailAdapter extends ArrayAdapter<OrderDetail> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(resource,null);
+        convertView = LayoutInflater.from(context).inflate(resource, null);
 
         ivImage = convertView.findViewById(R.id.ivImage);
         tvName = convertView.findViewById(R.id.tvName);
@@ -53,10 +49,10 @@ public class OrderDetailAdapter extends ArrayAdapter<OrderDetail> {
         tvPrice = convertView.findViewById(R.id.tvPrice);
 
         orderDetail = OrderDetailModels.get(position); // lấy vị trí hiện tại để đẩy lên tv và iv
-        tvName.setText("Name:        " + orderDetail.getName());
-        tvAmount.setText("Amount:    " + orderDetail.getAmount());
-        tvPrice.setText("Price:         " + orderDetail.getPrice() + "$");
-        Picasso.get().load(orderDetail.getImage()).into(ivImage);
+        tvName.setText("Name:        " + orderDetail.getNameProd());
+        tvAmount.setText("Amount:    " + orderDetail.getQuantity());
+        tvPrice.setText("Price:         " + orderDetail.getTotalMoney() + "$");
+        Picasso.get().load(orderDetail.getLinkImgProd()).into(ivImage);
 
 //        setEvent();
 

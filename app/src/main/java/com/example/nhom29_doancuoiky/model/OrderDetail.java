@@ -3,8 +3,8 @@ package com.example.nhom29_doancuoiky.model;
 import java.io.Serializable;
 
 public class OrderDetail implements Serializable {
-    Integer id,amount;
-    String name,price,image;
+    Integer id, amount;
+    String name, price, image;
 
     public OrderDetail() {
     }

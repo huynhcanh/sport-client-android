@@ -36,7 +36,7 @@ public class Cart implements Serializable {
         this.amount = amount;
         this.size = size;
         this.price = price;
-        this.totalprice=price;
+        this.totalprice = price;
     }
 
     public String getSize() {

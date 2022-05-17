@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class OrderHistory implements Serializable {
     Integer id;
-    String orderDate,status;
+    String orderDate, status;
     Float totalMoney;
 
     public OrderHistory() {

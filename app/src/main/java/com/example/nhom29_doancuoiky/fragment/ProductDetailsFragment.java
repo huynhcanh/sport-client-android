@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,6 +93,21 @@ public class ProductDetailsFragment extends Fragment {
                             for (int i = 0; i < response.length(); i++) {
                                 same_listProduct.add(new ProductConverter().toApiResponse(response.getJSONObject(i)));
                             }
+
+                            same.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    nameprd.setText(same_listProduct.get(i).getName());
+                                    priceprd.setText("PRICE: " + same_listProduct.get(i).getUnitPrice() + "$");
+                                    makeinprd.setText(same_listProduct.get(i).getDescription());
+                                    Picasso.get().load(same_listProduct.get(i).getImages().get(0)).into(imgview);
+                                    same_listProduct.clear();
+                                    loadsamelist();
+
+                                }
+                            });
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -152,11 +168,12 @@ public class ProductDetailsFragment extends Fragment {
         makeinprd = view.findViewById(R.id.makeinprd);
         amount = view.findViewById(R.id.amount);
         RadioGroup2 = view.findViewById(R.id.RadioGroup2);
+        RadioButton rad_tre_em = view.findViewById(R.id.sizete);
+        RadioButton rad_nguoi_lon = view.findViewById(R.id.sizenl);
         add = view.findViewById(R.id.buttonadd);
         btnAdd = view.findViewById(R.id.btnAdd);
         btnMinus = view.findViewById(R.id.btnMinus);
         same = view.findViewById(R.id.same);
-        RadioGroup2.check(R.id.sizem);
 
         // nho' lay doi tuong gui qua de set len view - thieu ham lay doi tuong gui qua
         ProductApiResponse productApiResponse = (ProductApiResponse) getActivity().getIntent().getSerializableExtra("product_detail");
@@ -183,17 +200,7 @@ public class ProductDetailsFragment extends Fragment {
             }
         });
 
-        same.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                nameprd.setText(same_listProduct.get(i).getName());
-                priceprd.setText("PRICE: " + same_listProduct.get(i).getUnitPrice() + "$");
-                makeinprd.setText(same_listProduct.get(i).getDescription());
-                Picasso.get().load(same_listProduct.get(i).getImages().get(0)).into(imgview);
-                same_listProduct.clear();
-                loadsamelist();
-            }
-        });
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -204,6 +211,7 @@ public class ProductDetailsFragment extends Fragment {
                 TextView price = dialog.findViewById(R.id.price);
                 price.setText("");
                 title.setText("   Product added to cart   ");
+
                 bnt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -213,7 +221,7 @@ public class ProductDetailsFragment extends Fragment {
                         StringBuilder url = new StringBuilder(ApiConstant.URL_API)
                                 .append("cart?")
                                 .append("productId=" + productApiResponse.getId().toString())
-                                .append("&sizeCode="+ "tre-em") //chỉnh lại radio (sizecode=["tre-em","nguoi-lon"];
+                                .append("&sizeCode=" + ((rad_tre_em.isChecked()) ? "tre-em" : "nguoi-lon")) //chỉnh lại radio (sizecode=["tre-em","nguoi-lon"];
                                 .append("&userId=" + ApiConstant.userLog.getId().toString())
                                 .append("&quantity=" + amount.getText());
                         System.out.println(url.toString());
@@ -238,6 +246,7 @@ public class ProductDetailsFragment extends Fragment {
                 dialog.show();
             }
         });
+
         return view;
     }
 

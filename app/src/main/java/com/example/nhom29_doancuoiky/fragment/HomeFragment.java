@@ -19,7 +19,6 @@ import com.example.nhom29_doancuoiky.R;
 import com.example.nhom29_doancuoiky.adapter.ProductAdapter;
 import com.example.nhom29_doancuoiky.constant.ApiConstant;
 import com.example.nhom29_doancuoiky.converter.ProductConverter;
-import com.example.nhom29_doancuoiky.model.Product;
 import com.example.nhom29_doancuoiky.response.ProductApiResponse;
 
 import org.json.JSONArray;
