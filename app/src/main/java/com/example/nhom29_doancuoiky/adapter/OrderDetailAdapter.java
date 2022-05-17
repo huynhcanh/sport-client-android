@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.nhom29_doancuoiky.R;
+import com.example.nhom29_doancuoiky.constant.ApiConstant;
 import com.example.nhom29_doancuoiky.response.OrderDetailApiResponse;
 import com.squareup.picasso.Picasso;
 
@@ -52,7 +53,7 @@ public class OrderDetailAdapter extends ArrayAdapter<OrderDetailApiResponse> {
         tvName.setText("Name:        " + orderDetail.getNameProd());
         tvAmount.setText("Amount:    " + orderDetail.getQuantity());
         tvPrice.setText("Price:         " + orderDetail.getTotalMoney() + "$");
-        Picasso.get().load(orderDetail.getLinkImgProd()).into(ivImage);
+        Picasso.get().load(ApiConstant.URL_IMG + "product/" + orderDetail.getLinkImgProd()).into(ivImage);
 
 //        setEvent();
 
