@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ConfirmCartFragment"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:background="@color/white">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -55,7 +56,7 @@
 
     <EditText
         android:id="@+id/address"
-        android:layout_width="245dp"
+        android:layout_width="235dp"
         android:textSize="25sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="190dp"
@@ -64,7 +65,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="250dp"
         android:layout_height="65dp"
-        android:layout_marginTop="510dp"
+        android:layout_gravity="bottom"
         android:text="Confirm"
         android:textSize="25sp"
         android:layout_marginLeft="60dp"
@@ -78,7 +79,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_marginTop="270dp"
-        android:layout_height="210dp"
+        android:layout_height="340dp"
         android:id="@+id/mapstore"
         tools:context=".MapsActivity"
         android:name="com.google.android.gms.maps.SupportMapFragment" />
@@ -87,11 +88,12 @@
         android:id="@+id/fbLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="195dp"
-        android:layout_marginLeft="337dp"
+        android:layout_marginTop="200dp"
+        android:layout_gravity="right"
         android:clickable="true"
         app:fabSize="mini"
-        android:src="@drawable/location" />
+        android:src="@drawable/location"
+        />
 
 
 </FrameLayout>
